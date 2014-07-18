@@ -1,10 +1,10 @@
 Pod::Spec.new do |s|
-  s.name     = 'MQTextField'
+  s.name     = 'MQTimeOut'
   s.version  = '1.0.0'
   s.license = 'MIT'
   s.summary  = 'Detects when an app goes idle/inactive (no touches) and sends a time out notification.'
-  s.authors = { 'Paris Xavier Pinkney' => 'ppinkney@marqeta.com',
-                'Aung Thar' => 'zthar@marqeta.com' }
+  s.authors = { 'Aung Thar' => 'zthar@marqeta.com',
+                'Paris Xavier Pinkney' => 'ppinkney@marqeta.com'}
 
   s.homepage = 'https://github.com/marqeta/mqtimeout'
   s.social_media_url = 'https://twitter.com/marqeta'
