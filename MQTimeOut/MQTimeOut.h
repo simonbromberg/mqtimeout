@@ -2,13 +2,19 @@
 
 #import <UIKit/UIKit.h>
 
-extern NSString *const MQPApplicationDidTimeoutNotification;
+extern NSString *const MQTimerTimeOutNotification;
+extern NSString *const MQTimerResetNotification;
 
 @interface MQTimeOut : UIApplication
 
+// Start timer with default 5 minutes
 - (void)startTimer;
-- (void)startTimerForMinutes:(CGFloat)minutes;
+// Start timer with custom time
+- (void)startTimerWithSeconds:(NSInteger)seconds;
+- (void)startTimerWiteMinutes:(NSInteger)minutes;
+// Manually stop timer
 - (void)stopTimer;
+// Manually reset timer
 - (void)resetTimer;
 
 @end

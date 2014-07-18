@@ -2,12 +2,13 @@
 
 #import "MQTimeOut.h"
 
-NSString *const MQPApplicationDidTimeoutNotification = @"MQTimerTimeOutNotification";
+NSString *const MQTimerTimeOutNotification = @"MQTimerTimeOutNotification";
+NSString *const MQTimerResetNotification = @"MQTimerResetNotification";
 
 @interface MQTimeOut()
 
 @property (nonatomic, strong) NSTimer *timer;
-@property (nonatomic) CGFloat timerMinutes;
+@property (nonatomic) CGFloat timerSeconds;
 
 @end
 
@@ -33,6 +34,8 @@ NSString *const MQPApplicationDidTimeoutNotification = @"MQTimerTimeOutNotificat
     if (self.timer) {
         [self stopTimer];
         [self startCountDown];
+        [[NSNotificationCenter defaultCenter]
+         postNotificationName:MQTimerResetNotification object:nil];
     }
 }
 
@@ -47,8 +50,7 @@ NSString *const MQPApplicationDidTimeoutNotification = @"MQTimerTimeOutNotificat
 - (void)startCountDown
 {
     [self stopTimer];
-    CGFloat timeout = self.timerMinutes * 60.0f;
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:timeout
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:self.timerSeconds
                                                   target:self
                                                 selector:@selector(timerExceeded)
                                                 userInfo:nil
@@ -57,20 +59,25 @@ NSString *const MQPApplicationDidTimeoutNotification = @"MQTimerTimeOutNotificat
 
 - (void)startTimer
 {
-    self.timerMinutes = 5.0f;
+    self.timerSeconds = 300;
     [self startCountDown];
 }
 
-- (void)startTimerForMinutes:(CGFloat)minutes
+- (void)startTimerWithSeconds:(NSInteger)seconds
 {
-    self.timerMinutes = minutes;
+    self.timerSeconds = seconds;
+    [self startCountDown];
+}
+- (void)startTimerWiteMinutes:(NSInteger)minutes
+{
+    self.timerSeconds = minutes * 60;
     [self startCountDown];
 }
 
 - (void)timerExceeded {
     //Post notification to observers to state time out has occured
 	[[NSNotificationCenter defaultCenter]
-	 postNotificationName:MQPApplicationDidTimeoutNotification object:nil];
+	 postNotificationName:MQTimerTimeOutNotification object:nil];
 }
 
 @end
