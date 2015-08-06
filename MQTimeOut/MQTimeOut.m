@@ -68,7 +68,7 @@ NSString *const MQTimerResetNotification = @"MQTimerResetNotification";
     self.timerSeconds = seconds;
     [self startCountDown];
 }
-- (void)startTimerWiteMinutes:(NSInteger)minutes
+- (void)startTimerWithMinutes:(NSInteger)minutes
 {
     self.timerSeconds = minutes * 60;
     [self startCountDown];
