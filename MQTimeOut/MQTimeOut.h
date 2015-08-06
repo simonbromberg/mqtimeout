@@ -10,7 +10,7 @@ extern NSString *const MQTimerResetNotification;
 // Start timer with default 5 minutes
 - (void)startTimer;
 // Start timer with custom time
-- (void)startTimerWithSeconds:(NSInteger)seconds;
+- (void)startTimerWithSeconds:(NSTimeInterval)seconds;
 - (void)startTimerWithMinutes:(NSInteger)minutes;
 // Manually stop timer
 - (void)stopTimer;

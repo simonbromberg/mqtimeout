@@ -8,7 +8,7 @@ NSString *const MQTimerResetNotification = @"MQTimerResetNotification";
 @interface MQTimeOut()
 
 @property (nonatomic, strong) NSTimer *timer;
-@property (nonatomic) CGFloat timerSeconds;
+@property (nonatomic) NSTimeInterval timerSeconds;
 
 @end
 
@@ -63,14 +63,14 @@ NSString *const MQTimerResetNotification = @"MQTimerResetNotification";
     [self startCountDown];
 }
 
-- (void)startTimerWithSeconds:(NSInteger)seconds
+- (void)startTimerWithSeconds:(NSTimeInterval)seconds
 {
     self.timerSeconds = seconds;
     [self startCountDown];
 }
 - (void)startTimerWithMinutes:(NSInteger)minutes
 {
-    self.timerSeconds = minutes * 60;
+    self.timerSeconds = minutes * 60.f;
     [self startCountDown];
 }
 
