@@ -14,6 +14,10 @@ NSString *const MQTimerResetNotification = @"MQTimerResetNotification";
 
 @implementation MQTimeOut
 
++(instancetype) sharedApplication {
+    return (MQTimeOut*)[super sharedApplication];
+}
+
 - (void)sendEvent:(UIEvent *)event {
 	[super sendEvent:event];
     
@@ -32,7 +36,6 @@ NSString *const MQTimerResetNotification = @"MQTimerResetNotification";
 - (void)resetTimer
 {
     if (self.timer) {
-        [self stopTimer];
         [self startCountDown];
         [[NSNotificationCenter defaultCenter]
          postNotificationName:MQTimerResetNotification object:nil];
