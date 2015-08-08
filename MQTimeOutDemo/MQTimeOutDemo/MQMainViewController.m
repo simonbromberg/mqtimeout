@@ -47,13 +47,13 @@
 {
     self.countDownTime = self.defaultCountDownTime;
     self.mainView.countDownLabel.text = [NSString stringWithFormat:@"%i",self.countDownTime];
-    [((MQTimeOut *)[UIApplication sharedApplication]) startTimerWithSeconds:self.defaultCountDownTime];
+    [[MQTimeOut sharedApplication] startTimerWithSeconds:self.defaultCountDownTime];
     [self countdownTimer];
 }
 
 - (void)timerDidTimeOut
 {
-    [((MQTimeOut *)[UIApplication sharedApplication]) stopTimer];
+    [[MQTimeOut sharedApplication] stopTimer];
 
     [[[UIAlertView alloc] initWithTitle:@"Times Up"
                                 message:[NSString stringWithFormat:@"You haven't been active for %i seconds",
