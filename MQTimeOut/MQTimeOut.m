@@ -9,6 +9,7 @@ NSString *const MQTimerResetNotification = @"MQTimerResetNotification";
 
 @property (nonatomic, strong) NSTimer *timer;
 @property (nonatomic) NSTimeInterval timerSeconds;
+@property (nonatomic, strong) NSDate* startDate;
 
 @end
 
@@ -47,6 +48,7 @@ NSString *const MQTimerResetNotification = @"MQTimerResetNotification";
     if (self.timer) {
         [self.timer invalidate];
         self.timer = nil;
+        self.startDate = nil;
     }
 }
 
@@ -58,6 +60,7 @@ NSString *const MQTimerResetNotification = @"MQTimerResetNotification";
                                                 selector:@selector(timerExceeded)
                                                 userInfo:nil
                                                  repeats:NO];
+    self.startDate = [NSDate date];
 }
 
 - (void)startTimer
@@ -71,6 +74,7 @@ NSString *const MQTimerResetNotification = @"MQTimerResetNotification";
     self.timerSeconds = seconds;
     [self startCountDown];
 }
+
 - (void)startTimerWithMinutes:(NSInteger)minutes
 {
     self.timerSeconds = minutes * 60.f;
@@ -81,6 +85,14 @@ NSString *const MQTimerResetNotification = @"MQTimerResetNotification";
     //Post notification to observers to state time out has occured
 	[[NSNotificationCenter defaultCenter]
 	 postNotificationName:MQTimerTimeOutNotification object:nil];
+    self.startDate = nil;
+}
+
+-(NSTimeInterval) getTimeElapsed {
+    if (self.startDate) {
+        return [[NSDate date] timeIntervalSinceDate: self.startDate];
+    }
+    return 0;
 }
 
 @end

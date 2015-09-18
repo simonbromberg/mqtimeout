@@ -17,5 +17,7 @@ extern NSString *const MQTimerResetNotification;
 // Manually reset timer
 - (void)resetTimer;
 
+- (NSTimeInterval) getTimeElapsed;
+
 +(instancetype) sharedApplication;
 @end
