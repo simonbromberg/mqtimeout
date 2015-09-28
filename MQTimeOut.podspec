@@ -6,7 +6,7 @@ Pod::Spec.new do |s|
   s.authors = { 'Aung Thar' => 'zthar@marqeta.com',
                 'Paris Xavier Pinkney' => 'ppinkney@marqeta.com'}
 
-  s.homepage = 'https://github.com/marqeta/mqtimeout'
+  s.homepage = 'https://github.com/simonbromberg/mqtimeout'
   s.social_media_url = 'https://twitter.com/marqeta'
 
   s.description = 'Detects when an app goes idle/inactive (no touches) and sends a time out notification.'
