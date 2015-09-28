@@ -20,7 +20,7 @@ NSString *const MQTimerResetNotification = @"MQTimerResetNotification";
 }
 
 - (void)sendEvent:(UIEvent *)event {
-	[super sendEvent:event];
+    [super sendEvent:event];
     
     if (self.timer) {
         // Check to see if there was a touch event
@@ -83,16 +83,13 @@ NSString *const MQTimerResetNotification = @"MQTimerResetNotification";
 
 - (void)timerExceeded {
     //Post notification to observers to state time out has occured
-	[[NSNotificationCenter defaultCenter]
-	 postNotificationName:MQTimerTimeOutNotification object:nil];
+    [[NSNotificationCenter defaultCenter]
+     postNotificationName:MQTimerTimeOutNotification object:nil];
     self.startDate = nil;
 }
 
--(NSTimeInterval) getTimeElapsed {
-    if (self.startDate) {
-        return [[NSDate date] timeIntervalSinceDate: self.startDate];
-    }
-    return 0;
+-(NSDate*) getLastActivityDate {
+    return self.startDate;
 }
 
 @end
