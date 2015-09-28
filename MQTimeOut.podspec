@@ -11,7 +11,7 @@ Pod::Spec.new do |s|
 
   s.description = 'Detects when an app goes idle/inactive (no touches) and sends a time out notification.'
 
-  s.source   = { :git => 'https://github.com/marqeta/mqtimeout.git',
+  s.source   = { :git => 'https://github.com/simonbromberg/mqtimeout.git',
                  :tag => s.version.to_s }
 
   # Sources
